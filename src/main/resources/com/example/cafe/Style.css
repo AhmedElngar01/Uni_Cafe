@@ -1,0 +1,53 @@
+.text-field {
+    -fx-text-fill: white;                /* لون الكتابة */
+    -fx-font-size: 12px;                 /* حجم الخط */
+    -fx-background-color: transparent;   /* الخلفية شفافة */
+    -fx-padding: 7 5 7 5;                /* padding زي بتاعك */
+    -fx-border-color: rgba(221, 221, 221, 0.39);
+    -fx-border-width: 0 0 1 0;           /* بس من تحت */
+}
+
+.text-field:hover {
+    -fx-background-color: #4985e01f;
+}
+
+
+.text-field:focused {
+    -fx-border-color: #b5b2ac;           /* اللون لما يعمل فوكس */
+    -fx-border-width: 0 0 2 0;           /* يثقل الخط */
+    -fx-background-insets: 0;
+    -fx-effect: dropshadow( gaussian , #b5b2ac , 5,0,0,1); /* لمعان خفيف */
+}
+
+
+.button {
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+    -fx-pref-width: 8.5em;
+    -fx-pref-height: 2.9em;
+    -fx-border-color: #b5b2ac;
+    -fx-border-width: 0.2em;
+    -fx-border-radius: 11px;
+    -fx-background-radius: 11px;
+    -fx-cursor: hand;
+    -fx-padding: 0 10 0 10;
+    -fx-font-size: 14px;
+    -fx-transition: all 0.6s ease;   /* مش native بس بنقلدها */
+}
+
+/* hover effect */
+.button:hover {
+    -fx-background-color: #b5b2ac;
+}
+
+/* الأيقونة تتحرك شوية على hover */
+.icon {
+    -fx-translate-x: 0;
+    -fx-transition: all 0.6s ease;
+}
+
+.button:hover .icon {
+    -fx-translate-x: 5;
+}
+
+

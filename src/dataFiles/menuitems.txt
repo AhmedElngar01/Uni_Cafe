@@ -1,0 +1,14 @@
+Cheese Pizza,Classic cheese pizza,50.0,PIZZA
+Pepperoni Pizza,Pepperoni and cheese pizza,55.0,PIZZA
+Chicken Sandwich,Grilled chicken sandwich,35.0,SANDWICHES
+Tuna Sandwich,Tuna and mayo sandwich,32.0,SANDWICHES
+French Fries,Crispy french fries,18.0,SNACKS
+Onion Rings,Fried onion rings,20.0,SNACKS
+Espresso,Hot espresso coffee,15.0,HOT_DRINKS
+Cappuccino,Cappuccino with milk foam,18.0,HOT_DRINKS
+Iced Coffee,Cold iced coffee,17.0,COLD_DRINKS
+Lemonade,Fresh lemonade,12.0,COLD_DRINKS
+Vanilla Ice Cream,Classic vanilla ice cream,20.0,ICECREAM
+Chocolate Ice Cream,Rich chocolate ice cream,22.0,ICECREAM
+Belgian Waffle,Belgian waffle with syrup,30.0,DESSERTS
+Chocolate Cake,Chocolate layered cake,28.0,DESSERTS
