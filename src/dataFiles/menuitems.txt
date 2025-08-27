@@ -12,3 +12,4 @@ Vanilla Ice Cream,Classic vanilla ice cream,20.0,ICECREAM
 Chocolate Ice Cream,Rich chocolate ice cream,22.0,ICECREAM
 Belgian Waffle,Belgian waffle with syrup,30.0,DESSERTS
 Chocolate Cake,Chocolate layered cake,28.0,DESSERTS
+aaa,aaa,20.0,PIZZA

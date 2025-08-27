@@ -16,16 +16,17 @@
                 <Image url="@Backgrounds/RegisterBG.png" />
             </image>
         </ImageView>
+        <TextField fx:id="nameField" layoutX="100.0" layoutY="168.0" prefHeight="50.0" prefWidth="250.0" promptText="Name" stylesheets="@Style.css" />
         <TextField fx:id="idFiled" layoutX="100.0" layoutY="219.0" prefHeight="50.0" prefWidth="250.0" promptText="ID" stylesheets="@Style.css" />
         <PasswordField fx:id="passwordFild" layoutX="100.0" layoutY="270.0" prefHeight="50.0" prefWidth="250.0" promptText="Password" stylesheets="@Style.css" />
         <Button layoutX="165.0" layoutY="435.0" mnemonicParsing="false" onAction="#switchToLogin" stylesheets="@Style.css" text="Sign in" />
-        <Button layoutX="165.0" layoutY="345.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="86.0" stylesheets="@Style.css" text="Register" />
+        <Button layoutX="165.0" layoutY="345.0" mnemonicParsing="false" onAction="#Register" prefHeight="24.0" prefWidth="86.0" stylesheets="@Style.css" text="Register" />
         <Label layoutX="139.0" layoutY="400.0" prefHeight="18.0" prefWidth="172.0" text="---------------- or ----------------" textFill="#b5b2ac" />
         <Label layoutX="132.0" layoutY="96.0" prefHeight="58.0" prefWidth="185.0" text="Welcome" textFill="#f2eee6">
             <font>
                 <Font name="System Bold" size="40.0" />
             </font>
         </Label>
-        <TextField fx:id="nameField" layoutX="100.0" layoutY="168.0" prefHeight="50.0" prefWidth="250.0" promptText="Name" stylesheets="@Style.css" />
+      <Label fx:id="warning" alignment="CENTER" layoutX="225.0" layoutY="320.0" prefHeight="18.0" prefWidth="0.0" textFill="RED" />
     </children>
 </AnchorPane>

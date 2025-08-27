@@ -74,7 +74,7 @@
                                 <Image url="@Icons/lego-head.png" />
                             </image>
                         </ImageView>
-                        <Label text="Hello Ahmed">
+                        <Label fx:id="helloLabel" alignment="TOP_CENTER" text="Hello Ahmed">
                             <font>
                                 <Font name="Calibri Bold" size="16.0" />
                             </font>
@@ -106,6 +106,21 @@
                         <Button layoutX="22.0" layoutY="13.0" mnemonicParsing="false" onAction="#showMyOrders" opacity="0.0" prefHeight="25.0" prefWidth="113.0" />
                     </children>
                 </Pane>
+            <Pane layoutX="10.0" layoutY="242.0" prefHeight="50.0" prefWidth="200.0">
+               <children>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="25.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@Icons/loyalty.png" />
+                     </image>
+                  </ImageView>
+                  <Label layoutX="57.0" layoutY="17.0" text="Redeem Points">
+                     <font>
+                        <Font name="Calibri Bold" size="14.5" />
+                     </font>
+                  </Label>
+                  <Button layoutX="22.0" layoutY="13.0" mnemonicParsing="false" onAction="#redeemLoyaltyPoints" opacity="0.0" prefHeight="25.0" prefWidth="113.0" />
+               </children>
+            </Pane>
                 <Pane layoutX="10.0" layoutY="224.0" prefHeight="50.0" prefWidth="200.0">
                     <children>
                         <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="25.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
@@ -118,7 +133,7 @@
                                 <Font name="Calibri Bold" size="16.0" />
                             </font>
                         </Label>
-                        <Button layoutX="22.0" layoutY="13.0" mnemonicParsing="false" opacity="0.0" prefHeight="25.0" prefWidth="102.0" />
+                        <Button layoutX="22.0" layoutY="13.0" mnemonicParsing="false" onAction="#payForOrder" opacity="0.0" prefHeight="25.0" prefWidth="102.0" />
                     </children>
                 </Pane>
                 <Pane layoutX="10.0" layoutY="224.0" prefHeight="50.0" prefWidth="200.0">

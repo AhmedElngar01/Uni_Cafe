@@ -1,0 +1,1 @@
+1,205.0,READY_FOR_PICKUP,2025-08-27,true,23101542,Chicken Sandwich:3;Cheese Pizza:2;

@@ -28,4 +28,5 @@ public class MenuItem implements IMenuItem {
     public double getPrice() {
         return price;
     }
+
 }
