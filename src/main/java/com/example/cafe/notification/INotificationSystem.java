@@ -4,9 +4,8 @@ import java.util.List;
 
 public interface INotificationSystem {
 
-    void notifyStudent(String message);
+    void notifyStudent(String message, String studentId);
 
-    List<String> getNotifications();
+    java.util.List<String> getNotifications(String studentId);
 
-    void clearNotifications();
 }

@@ -137,7 +137,7 @@
                                 <Font name="Calibri Bold" size="16.0" />
                             </font>
                         </Label>
-                        <Button layoutX="22.0" layoutY="13.0" mnemonicParsing="false" onAction="#ShowLoyaltyReport" opacity="0.0" prefHeight="25.0" prefWidth="125.0" />
+                        <Button layoutX="22.0" layoutY="13.0" mnemonicParsing="false" onAction="#showLoyaltyReport" opacity="0.0" prefHeight="25.0" prefWidth="125.0" />
                     </children>
                 </Pane>
                 <Pane layoutX="10.0" layoutY="292.0" prefHeight="50.0" prefWidth="200.0">
@@ -152,7 +152,7 @@
                                 <Font name="Calibri Bold" size="16.0" />
                             </font>
                         </Label>
-                        <Button layoutX="22.0" layoutY="13.0" mnemonicParsing="false" onAction="#ShowPendingOrders" opacity="0.0" prefHeight="25.0" prefWidth="102.0" />
+                        <Button layoutX="22.0" layoutY="13.0" mnemonicParsing="false" onAction="#showPendingOrders" opacity="0.0" prefHeight="25.0" prefWidth="102.0" />
                     </children>
                 </Pane>
                 <Pane layoutX="10.0" layoutY="489.0" prefHeight="50.0" prefWidth="200.0">

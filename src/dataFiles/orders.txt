@@ -1,1 +1,2 @@
-1,205.0,READY_FOR_PICKUP,2025-08-27,true,23101542,Chicken Sandwich:3;Cheese Pizza:2;
+1,56.0,PREPARING,2025-08-28,true,1111,Chocolate Cake:2;
+3,150.0,PREPARING,2025-08-28,true,2222,Cheese Pizza:3;

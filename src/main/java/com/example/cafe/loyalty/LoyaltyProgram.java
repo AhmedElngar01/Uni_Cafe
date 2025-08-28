@@ -20,6 +20,50 @@ public class LoyaltyProgram implements ILoyaltyProgram {
     private IredeemPoints redeemStrategy;
     private final List<RedemptionRecord> redemptionRecords = new ArrayList<>();
     private final Map<String, Integer> studentPoints = new HashMap<>();
+    private static final String REDEMPTION_FILE = getDataFilePath("redemption_records.txt");
+    // Load redemption records from file
+    public void loadRedemptionRecordsFromFile() {
+        redemptionRecords.clear();
+        try {
+            java.io.File file = new java.io.File(REDEMPTION_FILE);
+            if (!file.exists()) {
+                file.getParentFile().mkdirs();
+                file.createNewFile();
+            }
+            try (java.io.BufferedReader reader = new java.io.BufferedReader(new java.io.FileReader(file))) {
+                String line;
+                while ((line = reader.readLine()) != null) {
+                    String[] parts = line.split(",");
+                    if (parts.length == 2) {
+                        java.time.LocalDate date = java.time.LocalDate.parse(parts[0]);
+                        int points = Integer.parseInt(parts[1]);
+                        redemptionRecords.add(new RedemptionRecord(date, points));
+                    }
+                }
+            }
+        } catch (Exception e) {
+            System.err.println("Error loading redemption records: " + e.getMessage());
+        }
+    }
+
+    // Save redemption records to file
+    public void saveRedemptionRecordsToFile() {
+        try {
+            java.io.File file = new java.io.File(REDEMPTION_FILE);
+            if (!file.exists()) {
+                file.getParentFile().mkdirs();
+                file.createNewFile();
+            }
+            try (java.io.BufferedWriter writer = new java.io.BufferedWriter(new java.io.FileWriter(file))) {
+                for (RedemptionRecord record : redemptionRecords) {
+                    writer.write(record.date + "," + record.points);
+                    writer.newLine();
+                }
+            }
+        } catch (Exception e) {
+            System.err.println("Error saving redemption records: " + e.getMessage());
+        }
+    }
 
     public void loadPointsFromFile() {
         studentPoints.clear();
@@ -91,13 +135,15 @@ public class LoyaltyProgram implements ILoyaltyProgram {
     }
 
     public void incrementRedemption(int points) {
-        totalRedemptions++;
-        totalRedeemedPoints += points;
-        redemptionRecords.add(new RedemptionRecord(LocalDate.now(), points));
+    totalRedemptions++;
+    totalRedeemedPoints += points;
+    redemptionRecords.add(new RedemptionRecord(java.time.LocalDate.now(), points));
+    saveRedemptionRecordsToFile();
     }
 
     public List<RedemptionRecord> getRedemptionRecords() {
-        return redemptionRecords;
+    loadRedemptionRecordsFromFile();
+    return redemptionRecords;
     }
 
     public int getTotalRedemptions() {

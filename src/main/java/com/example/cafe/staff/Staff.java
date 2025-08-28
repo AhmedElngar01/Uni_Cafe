@@ -60,8 +60,9 @@ public class Staff implements IStaff {
             }
         }
         if (student != null) {
-            notificationSystem.notifyStudent(
-                    "Order " + orderId + " for student " + student.getStudentId() + " is now Preparing.");
+            if (notificationSystem instanceof com.example.cafe.notification.NotificationSystem ns) {
+                ns.notifyStudent("Order " + orderId + " for student " + student.getStudentId() + " is now Preparing.", student.getStudentId());
+            }
         }
     }
 
@@ -75,8 +76,9 @@ public class Staff implements IStaff {
             }
         }
         if (student != null) {
-            notificationSystem.notifyStudent(
-                    "Order " + orderId + " for student " + student.getStudentId() + " is Ready for Pickup!");
+            if (notificationSystem instanceof com.example.cafe.notification.NotificationSystem ns) {
+                ns.notifyStudent("Order " + orderId + " for student " + student.getStudentId() + " is Ready for Pickup!", student.getStudentId());
+            }
         }
     }
 

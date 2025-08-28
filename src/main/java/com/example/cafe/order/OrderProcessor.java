@@ -3,6 +3,7 @@ package com.example.cafe.order;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import com.example.cafe.loyalty.ILoyaltyProgram;
 import com.example.cafe.repository.FileRepository;
 import com.example.cafe.repository.IRepository;
@@ -39,6 +40,7 @@ public class OrderProcessor implements IOrderProcessor {
             orderRepo.save(order);
         }
     }
+
     private final IRepository<IOrder> orderRepo = new FileRepository<>(getDataFilePath("orders.txt"),
             new OrderSerializer());
 
@@ -131,7 +133,11 @@ public class OrderProcessor implements IOrderProcessor {
         if (order != null) {
             order.setStatus(OrderState.PREPARING);
             orderRepo.save(order);
-
+            // Send notification to student
+            if (order instanceof com.example.cafe.order.Order o && o.getStudentId() != null) {
+                com.example.cafe.notification.NotificationSystem notificationSystem = new com.example.cafe.notification.NotificationSystem();
+                notificationSystem.notifyStudent("Order #" + orderId + " is now PREPARING", o.getStudentId());
+            }
         }
     }
 
@@ -140,6 +146,11 @@ public class OrderProcessor implements IOrderProcessor {
         if (order != null) {
             order.setStatus(OrderState.READY_FOR_PICKUP);
             orderRepo.save(order);
+            // Send notification to student
+            if (order instanceof com.example.cafe.order.Order o && o.getStudentId() != null) {
+                com.example.cafe.notification.NotificationSystem notificationSystem = new com.example.cafe.notification.NotificationSystem();
+                notificationSystem.notifyStudent("Order #" + orderId + " is READY FOR PICKUP", o.getStudentId());
+            }
         }
     }
 }
