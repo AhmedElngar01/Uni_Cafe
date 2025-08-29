@@ -6,6 +6,7 @@ import com.example.cafe.menu.MenuItem;
 import com.example.cafe.notification.*;
 import com.example.cafe.order.*;
 import com.example.cafe.payment.*;
+import com.example.cafe.recommendation.RecommendationSystem;
 import com.example.cafe.report.*;
 import com.example.cafe.staff.*;
 import com.example.cafe.student.*;
@@ -58,6 +59,14 @@ public class HomeController implements Initializable {
     private final IOrderProcessor orderProcessor = new OrderProcessor(loyaltyProgram, studentOrderList);
     private final IStaff staff = new Staff(orderProcessor, notificationSystem);
     private final IReportManager reportManager = new ReportManager(orderProcessor, loyaltyProgram);
+    private final RecommendationSystem recommender =
+    new RecommendationSystem(
+        // Provide the menu items as List<MenuItem>
+        new MenuManager().getTheMenu().stream()
+            .filter(mi -> mi instanceof MenuItem)
+            .map(mi -> (MenuItem) mi)
+            .collect(Collectors.toList())
+    );
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -97,6 +106,8 @@ public class HomeController implements Initializable {
         IOrder order = new Order(student.getStudentId());
         List<IMenuItem> menuItems = menuManager.getTheMenu();
 
+        // You need to have a RecommendationSystem instance available
+
         while (true) {
             Optional<Integer> itemNumberOpt = promptForMenuItem(menuItems);
             if (!itemNumberOpt.isPresent() || itemNumberOpt.get() == 0)
@@ -118,6 +129,33 @@ public class HomeController implements Initializable {
                 order.addItemToOrder(selectedItem);
 
             showAlert("Item Added", "Added " + quantity + " x " + selectedItem.getName() + " to your order.");
+
+            // --- Recommendation logic ---
+            List<MenuItem> availableAsMenuItem = menuManager.getTheMenu().stream()
+                    .filter(mi -> mi instanceof MenuItem)
+                    .map(mi -> (MenuItem) mi)
+                    .collect(Collectors.toList());
+
+            MenuItem recommended = recommender.recommend(availableAsMenuItem);
+            if (recommended != null) {
+                Alert recAlert = new Alert(Alert.AlertType.CONFIRMATION);
+                recAlert.setTitle("Recommendation");
+                recAlert.setHeaderText("Would you like to add " + recommended.getName() + " to your order?");
+                recAlert.setContentText("Recommended item: " + recommended.getName());
+                ButtonType yesBtn = new ButtonType("Yes");
+                ButtonType noBtn = new ButtonType("No", ButtonBar.ButtonData.CANCEL_CLOSE);
+                recAlert.getButtonTypes().setAll(yesBtn, noBtn);
+
+                Optional<ButtonType> recResult = recAlert.showAndWait();
+                if (recResult.isPresent() && recResult.get() == yesBtn) {
+                    order.addItemToOrder(recommended);
+                    recommender.update(selectedItem.getName(), recommended.getName(), 1.0); // positive reward
+                    showAlert("Added", "Added " + recommended.getName() + "!");
+                } else {
+                    recommender.update(selectedItem.getName(), recommended.getName(), 0.0); // no reward
+                }
+            }
+            // ---
         }
 
         if (order.getOrderMenuItemList().getOrderMenuItems().isEmpty()) {
